@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>AR Avatar</title>
+    <!-- Gerekli kütüphaneler -->
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/mindar-face-aframe.prod.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/mindar-face-aframe.prod.css" />
+  </head>
+
+  <body>
+    <script src="script.js"></script>
+
+    <a-scene
+      mindar-face
+      embedded
+      color-space="sRGB"
+      renderer="colorManagement: true; logarithmicDepthBuffer: true;"
+      vr-mode-ui="enabled: false"
+      device-orientation-permission-ui="enabled: false"
+    >
+      <!-- 3D modelin tanıtıldığı yer -->
+      <a-assets>
+        <a-asset-item id="avatarModel" src="avatar.glb"></a-asset-item>
+      </a-assets>
+
+      <!-- Yüz üzerine modelin oturtulduğu yer -->
+      <a-entity mindar-face-target="anchorIndex: 168">
+        <a-gltf-model
+          src="#avatarModel"
+          position="0 -0.3 0"
+          scale="0.5 0.5 0.5"
+          rotation="0 0 0"
+        ></a-gltf-model>
+      </a-entity>
+
+      <a-camera active="true" position="0 0 0"></a-camera>
+    </a-scene>
+  </body>
+</html>
